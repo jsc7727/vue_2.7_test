@@ -10,10 +10,10 @@
   </div>
 </template>
 
-
 <script setup>
 import { useQueryClient, useQuery, useMutation } from '@tanstack/vue-query'
-import { ref } from 'vue'
+import api from './../common/plugin/axios'
+// import { ref } from 'vue'
 
 // Access QueryClient instance
 const queryClient = useQueryClient()
@@ -21,12 +21,16 @@ const queryClient = useQueryClient()
 // const todos = ref([{id:Date.now(),title:"asdfqwer"}]);
 
 
-const getTodos = () =>{
-    return todos.value;
+const getTodos = async () =>{
+  const result = await api.get("http://localhost:4000/getData");
+  console.log(result)
+    return result.data;
 }
 
-const postTodo = (newData) =>{
-    todos.value.push(newData);
+const postTodo = async (newData) =>{
+    const result = await api.post("http://localhost:4000/addData",{data:newData});
+    console.log(result);
+    return;
 }
 
 // Query

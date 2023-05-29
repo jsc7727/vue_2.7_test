@@ -5,7 +5,7 @@ import axios from 'axios';
 let config = {
   baseURL: "localhost:4000",
   // timeout: 60 * 1000, // Timeout
-  withCredentials: true, // Check cross-site Access-Control
+  withCredentials: false, // Check cross-site Access-Control
   headers: {
     'Content-Type': 'application/json',
   },
