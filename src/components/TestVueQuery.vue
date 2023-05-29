@@ -18,7 +18,7 @@ import { ref } from 'vue'
 // Access QueryClient instance
 const queryClient = useQueryClient()
 
-const todos = ref([{id:Date.now(),title:"asdfqwer"}]);
+// const todos = ref([{id:Date.now(),title:"asdfqwer"}]);
 
 
 const getTodos = () =>{
