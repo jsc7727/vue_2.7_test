@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const axios = require('axios');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
+app.use(cors());
 app.use(bodyParser.json());
 
 
@@ -20,7 +22,7 @@ app.get('/', (req, res) => {
 app.get('/getData', async (req, res) => {
     try {
         const result = await axios.get("http://localhost:4001/getData");
-        res.send(JSON.stringify(result));
+        res.send(result.data);
     } catch (error) {
         console.error(error);
         res.status(500).send('Error occurred');
@@ -30,10 +32,11 @@ app.get('/getData', async (req, res) => {
 app.post('/addData', async (req, res) => {
     try {
         const requestData = req.body;
-        const result = await axios.post("http://localhost:4001/addData", requestData.data);
-        res.send(JSON.stringify(result));
+        console.log(requestData)
+        const result = await axios.post("http://localhost:4001/addData", requestData);
+        res.send(result.data);
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         res.status(500).send('Error occurred');
     }
 });
